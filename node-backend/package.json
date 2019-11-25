@@ -1,0 +1,27 @@
+{
+  "name": "node-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "couchbase": "^2.6.9",
+    "express": "^4.17.1",
+    "express-bearer-token": "^2.4.0",
+    "libxmljs": "^0.19.7",
+    "njwt": "^1.0.0",
+    "node-gyp": "^6.0.1",
+    "node-pre-gyp": "^0.14.0",
+    "nodemon": "^1.19.4",
+    "uuid": "^3.3.3"
+  }
+}

@@ -1,0 +1,15 @@
+node_modules/couchbase/build/Release/couchbase_impl.node
+node_modules/write-file-atomic/CHANGELOG.md
+node_modules/write-file-atomic/index.js
+node_modules/write-file-atomic/LICENSE
+node_modules/write-file-atomic/package.json
+node_modules/write-file-atomic/README.md
+node_modules/xdg-basedir/index.js
+node_modules/xdg-basedir/license
+node_modules/xdg-basedir/package.json
+node_modules/xdg-basedir/readme.md
+node_modules/yallist/iterator.js
+node_modules/yallist/LICENSE
+node_modules/yallist/package.json
+node_modules/yallist/README.md
+node_modules/yallist/yallist.js
