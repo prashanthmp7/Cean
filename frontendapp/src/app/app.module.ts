@@ -23,7 +23,7 @@ import { UserlistComponent } from './user/userlist/userlist.component';
     UserRegistrationComponent,
     LoginComponent,
     ProfileComponent,
-    UserlistComponent
+    UserlistComponent,
   ],
   imports: [
     BrowserModule,
