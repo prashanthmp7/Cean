@@ -10,14 +10,25 @@ cb.connectToServer( function( err, client ) {
 } );
 var movies = require('./movie');
 const profile = require('./profile');
+const uploads = require('./upload');
 
 var app = Express();
+
 app.use(BodyParser.json());
+app.use(BodyParser.urlencoded({ extended: true }));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    next();
+  });
 app.use(Cors());
 app.use(BearerToken())
 
 app.use('/', profile)
 app.use('/', movies);
+app.use('/', uploads)
 
 
 app.listen(3000, function() {
