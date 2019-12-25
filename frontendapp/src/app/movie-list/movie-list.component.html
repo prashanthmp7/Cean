@@ -38,6 +38,7 @@
                           <th>Digital Copy</th>
                           <th>Blu-Ray</th>
                           <th>DVD</th>
+                          <th>Thumbnail</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -47,6 +48,7 @@
                           <td>{{ movie.formats?.digital || false }}</td>
                           <td>{{ movie.formats?.bluray || false }}</td>
                           <td>{{ movie.formats?.dvd || false }}</td>
+                          <td>{{movie.imageData}}</td>
                       </tr>
                   </tbody>
               </table>

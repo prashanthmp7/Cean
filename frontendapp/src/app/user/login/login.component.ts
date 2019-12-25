@@ -11,8 +11,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   public loginInvalid: boolean;
-  private formSubmitAttempt: boolean;
-
+  public formSubmitAttempt: boolean;
+  error: string;
   constructor(private fb: FormBuilder, private authService: AuthenticationService) {
   }
 
@@ -22,18 +22,25 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
   }
+  // convenience getter for easy access to form fields
+  get formObj() {
+    return this.form.controls;
+  }
+
 
   async onSubmit() {
     this.loginInvalid = false;
-    this.formSubmitAttempt = false;
+    this.formSubmitAttempt = true;
     if (this.form.valid) {
       try {
         await this.authService.login(this.form.value);
-      } catch (err) {
+        if (this.authService.errors.status === 401) {
+          this.error = 'Login failed.Invalid credentials';
+        }
+      } catch (err ) {
+        this.error = err.message;
         this.loginInvalid = true;
       }
-    } else {
-      this.formSubmitAttempt = true;
     }
   }
 }

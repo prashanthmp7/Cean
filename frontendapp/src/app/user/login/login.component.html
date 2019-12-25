@@ -7,13 +7,20 @@
         <label class="full-width-input">
           Email
           <input type="text" placeholder="Email" formControlName="email" required>
+          <div *ngIf="formSubmitAttempt && formObj.email.errors" class="invalid-feedback">
+            <div *ngIf="formObj.email.errors['required']">Username is required</div>
+          </div>
         </label>
         <label class="full-width-input">
           Password
           <input type="password" placeholder="Password" formControlName="password" required>
+          <div *ngIf="formSubmitAttempt && formObj.password.errors" class="invalid-feedback">
+            <div *ngIf="formObj.password.errors['required']">Password is required</div>
+          </div>
         </label>
         <button class="button">Login</button>
       </form>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
       <div class="register-link">
         Not yet registered? <a routerLink="/register">Register Now</a>
       </div>

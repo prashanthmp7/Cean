@@ -10,7 +10,9 @@ import { Location } from '@angular/common';
 })
 export class CreateMovieComponent implements OnInit {
   public movie: any;
+  filesToUpload: Array<File>;
   constructor(private router: Router, private http: HttpClient, private location: Location) {
+    this.filesToUpload = [];
     this.movie = {
       name: '',
       genre: '',
@@ -24,6 +26,39 @@ export class CreateMovieComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  upload() {
+    this.makeFileRequest('http://localhost:3000/upload', [], this.filesToUpload).then((result) => {
+        console.log(result);
+    }, (error) => {
+        console.error(error);
+    });
+}
+
+fileChangeEvent(fileInput: any) {
+    this.filesToUpload =  fileInput.target.files as Array<File> ;
+}
+
+makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
+    return new Promise((resolve, reject) => {
+        const formData: any = new FormData();
+        const xhr = new XMLHttpRequest();
+        for (let i = 0; i < files.length; i++) {
+            formData.append('uploads', files[i], files[i].name);
+        }
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    resolve(JSON.parse(xhr.response));
+                } else {
+                    reject(xhr.response);
+                }
+            }
+        };
+        xhr.open('POST', url, true);
+        xhr.send(formData);
+    });
+}
   public save() {
     if (this.movie.name && this.movie.genre) {
       const httpOptions = {

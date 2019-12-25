@@ -30,6 +30,10 @@
                       <label for="genre">Genre</label>
                       <input type="text" class="form-control" id="genre" placeholder="Genre" [(ngModel)]="movie.genre">
                   </div>
+                  <div class="form-group">
+                    <input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+                    <button type="button" (click)="upload()">Upload</button>
+                  </div>
                   <div class="checkbox">
                       <label>
                           <input type="checkbox" [(ngModel)]="movie.formats.digital"> Digital Copy
