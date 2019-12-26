@@ -17,9 +17,9 @@ import { AuthenticationService } from '../services/authentication.service';
 export class MovieListComponent implements OnInit {
   public movies: any;
   constructor(private router: Router,
-              private movieService: MovieService,
-              private location: Location,
-              private authService: AuthenticationService) {
+    private movieService: MovieService,
+    private location: Location,
+    private authService: AuthenticationService) {
     this.movies = [];
   }
 
@@ -35,6 +35,11 @@ export class MovieListComponent implements OnInit {
     this.movieService.getMovies(query)
       .subscribe((resp: any) => {
         this.movies = resp;
+        this.movies.forEach(x => {
+          this.movieService.getImages(x.thumbnailData).subscribe((imageData: any) => {
+            x.thumbnailData = imageData[0].files[0];
+          });
+        });
       });
   }
 

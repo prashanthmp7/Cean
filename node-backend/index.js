@@ -14,8 +14,8 @@ const uploads = require('./upload');
 
 var app = Express();
 
-app.use(BodyParser.json());
-app.use(BodyParser.urlencoded({ extended: true }));
+app.use(BodyParser.json({limit: '50mb'}));
+app.use(BodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);

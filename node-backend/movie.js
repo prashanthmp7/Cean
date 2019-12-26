@@ -56,6 +56,7 @@ router.post("/movies", function (req, res) {
             'bluray': req.body.formats.bluray,
             'dvd': req.body.formats.dvd
         },
+        'thumbnailData': req.body.thumbnailData[0].id,
         'type': 'MovieDao'
     };
     bucket.insert(Uuid.v4(), data, function (error, result) {

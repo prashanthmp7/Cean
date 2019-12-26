@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { ImgFallbackModule } from 'ngx-img-fallback';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +31,8 @@ import { UserlistComponent } from './user/userlist/userlist.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ImgFallbackModule
   ],
   providers: [ MovieService, LoginService, AuthenticationService],
   bootstrap: [AppComponent]

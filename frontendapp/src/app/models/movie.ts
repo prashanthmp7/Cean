@@ -1,4 +1,5 @@
-export interface Movie {
+import { IThumbnailData } from './ThumbnailData';
+export interface IMovie {
   name: string;
   genre: string;
   formats: {
@@ -6,4 +7,6 @@ export interface Movie {
     bluray: boolean;
     dvd: boolean;
   };
+  thumbnailData: IThumbnailData;
+  type: string;
 }

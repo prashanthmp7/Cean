@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { Movie } from '../models/movie';
+import { IMovie } from '../models/movie';
 import { throwError } from 'rxjs';
 import { User } from '../user/models/user';
+import { IThumbnailData } from '../models/ThumbnailData';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class MovieService {
     }
     return this.http.get(url).
         pipe(
-           map((data: Movie[]) => {
+           map((data: IMovie[]) => {
              return data;
            }), catchError( error => {
              return throwError( 'Something went wrong!' );
@@ -41,4 +42,20 @@ export class MovieService {
              })
           );
       }
+
+      getImages(id?: any) {
+        let url = 'http://localhost:3000/upload/images';
+        if (id) {
+          url = 'http://localhost:3000/upload/images/' + id;
+        }
+        return this.http.get(url).
+            pipe(
+               map((data: IThumbnailData[]) => {
+                 return data;
+               }), catchError( error => {
+                 return throwError( 'Something went wrong!' );
+               })
+            );
+        }
+
 }

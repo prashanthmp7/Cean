@@ -48,7 +48,7 @@
                           <td>{{ movie.formats?.digital || false }}</td>
                           <td>{{ movie.formats?.bluray || false }}</td>
                           <td>{{ movie.formats?.dvd || false }}</td>
-                          <td>{{movie.imageData}}</td>
+                          <td><img height="350" width="200" src-placeholder="src\assets\placeholder.jpg" src="{{'data:image/jpg;base64,' + movie.thumbnailData.b64}}"/></td>
                       </tr>
                   </tbody>
               </table>

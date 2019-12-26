@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { IMovie } from '../models/movie';
+import { IThumbnailData } from '../models/ThumbnailData';
+
 
 @Component({
   selector: 'app-create-movie',
@@ -9,18 +12,20 @@ import { Location } from '@angular/common';
   styleUrls: ['./create-movie.component.css']
 })
 export class CreateMovieComponent implements OnInit {
-  public movie: any;
+  public movie: IMovie;
   filesToUpload: Array<File>;
   constructor(private router: Router, private http: HttpClient, private location: Location) {
     this.filesToUpload = [];
-    this.movie = {
+    this.movie  = {
       name: '',
       genre: '',
       formats: {
         digital: false,
         bluray: false,
         dvd: false
-      }
+      },
+      thumbnailData : <IThumbnailData>{},
+      type: 'MovieDao'
     };
   }
 
@@ -29,7 +34,8 @@ export class CreateMovieComponent implements OnInit {
 
   upload() {
     this.makeFileRequest('http://localhost:3000/upload', [], this.filesToUpload).then((result) => {
-        console.log(result);
+    const imageData = result as IThumbnailData;
+    this.movie.thumbnailData =  imageData;
     }, (error) => {
         console.error(error);
     });
