@@ -24,7 +24,7 @@ router.post("/upload", multer({ dest: "./uploads/" }).array("uploads", 12), func
         var filePath = req.files[i].path;
         fs.unlink(filePath, function () { console.log('File deleted') });
     }
-    var statement = "INSERT INTO `moviedb` (KEY,VALUE) VALUES ($1, {'files': $2})";
+    var statement = "INSERT INTO `MovieDb` (KEY,VALUE) VALUES ($1, {'files': $2})";
     var query = N1qlQuery.fromString(statement);
     bucket.query(query, [docId, fileInfo], function (error, result) {
         if (error) {
@@ -39,7 +39,7 @@ router.get("/upload/images/:id", function (req, res) {
     if (!req.params.id) {
         return res.status(400).send({ "message": "Miss-ing `id` parameter" });
     }
-    var query = N1qlQuery.fromString("SELECT moviedb.* FROM moviedb WHERE ANY val IN files SATISFIES val.id =$1 END").consistency(N1qlQuery.Consistency.REQUEST_PLUS);
+    var query = N1qlQuery.fromString("SELECT MovieDb.* FROM MovieDb WHERE ANY val IN files SATISFIES val.id =$1 END").consistency(N1qlQuery.Consistency.REQUEST_PLUS);
     bucket.query(query, [req.params.id.toLowerCase()], function (error, result) {
         if (error) {
             return res.status(400).send({ "message": error });

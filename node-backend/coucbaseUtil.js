@@ -7,7 +7,7 @@ module.exports = {
     connectToServer: function (callback) {
         var cluster = new Couchbase.Cluster(url);
         cluster.authenticate('Administrator', 'Administrator');
-        _bucket = cluster.openBucket('moviedb', function (err) {
+        _bucket = cluster.openBucket('MovieDb', function (err) {
             if (err) {
                 console.error('Got error: %j', err);
             }

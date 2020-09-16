@@ -58,4 +58,17 @@ export class MovieService {
             );
         }
 
+        deleteMovie(id?: any) {
+          let url ='http://localhost:3000/movies/delete/' + id;
+
+          return this.http.get(url).
+              pipe(
+                 map((data: boolean) => {
+                   return data;
+                 }), catchError( error => {
+                   return throwError( 'Something went wrong!' );
+                 })
+              );
+          }
+
 }

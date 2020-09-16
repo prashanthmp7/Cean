@@ -39,6 +39,8 @@
                           <th>Blu-Ray</th>
                           <th>DVD</th>
                           <th>Thumbnail</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -49,6 +51,8 @@
                           <td>{{ movie.formats?.bluray || false }}</td>
                           <td>{{ movie.formats?.dvd || false }}</td>
                           <td><img height="350" width="200" src-placeholder="src\assets\placeholder.jpg" src="{{'data:image/jpg;base64,' + movie.thumbnailData.b64}}"/></td>
+                          <td> <button (click)="onEditClicked(movie.id)">Edit</button> </td>
+                          <td> <button (click)="onDeleteClicked(movie.id)">Delete</button> </td>
                       </tr>
                   </tbody>
               </table>

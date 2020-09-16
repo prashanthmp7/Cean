@@ -32,7 +32,7 @@ router.post('/register', function (req, res) {
 
 router.post('/login', function (req, res) {
 
-  var query = N1qlQuery.fromString("SELECT moviedb.* FROM moviedb where type ='UserDao' and email =$1").consistency(N1qlQuery.Consistency.REQUEST_PLUS);
+  var query = N1qlQuery.fromString("SELECT MovieDb.* FROM MovieDb where type ='UserDao' and email =$1").consistency(N1qlQuery.Consistency.REQUEST_PLUS);
   bucket.query(query, [req.body.email], function (error, user) {
     if (error) return res.status(500).send({ status: 'Server error', err: error });
     if (!user) return res.status(404).send('User not found');
@@ -52,7 +52,7 @@ router.post('/login', function (req, res) {
 const jwtAuth = require('./auth');
 
 router.get('/profile', jwtAuth, function (req, res, next) {
-  var query = N1qlQuery.fromString("SELECT moviedb.* FROM moviedb where type ='UserDao' and id =$1").consistency(N1qlQuery.Consistency.REQUEST_PLUS);
+  var query = N1qlQuery.fromString("SELECT MovieDb.* FROM MovieDb where type ='UserDao' and id =$1").consistency(N1qlQuery.Consistency.REQUEST_PLUS);
   bucket.query(query, [req.userId], function (error, user) {
     if (error) {
       return res.status(500).send("There was a problem finding the user.");

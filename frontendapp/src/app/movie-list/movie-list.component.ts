@@ -47,6 +47,22 @@ export class MovieListComponent implements OnInit {
     this.router.navigate(['create']);
   }
 
+  public onEditClicked(param) {
+    console.log(param);
+  }
+
+  public onDeleteClicked(param) {
+    if (param !== '' ) {
+      return this.movieService.deleteMovie(param).subscribe((response: any) => {
+        if (response.auth === true ) {
+
+        }
+      }, error => {
+        console.log(error);
+      });
+    }
+  }
+
   onLogout() {
     this.authService.logout();
   }
